@@ -1,0 +1,234 @@
+<apex:page controller="CustomLoginController"
+           showHeader="false"
+           sidebar="false"
+           standardStylesheets="false"
+           docType="html-5.0">
+
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f5f7fb;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: transparent;
+        }
+
+        .header-left img {
+            width: 133px;
+            margin-left: 45px;       
+        }
+
+        .header-right a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ================= CONTAINER ================= */
+        .container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+
+        /* ================= LEFT SECTION ================= */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 120px;
+            padding-right: 40px;
+        }
+
+        .title-small {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .title-main {
+            font-size: 48px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            color: #4b5563;
+            font-size: 16px;
+        }
+
+        .features li {
+            margin-bottom: 12px;
+        }
+
+        /* ================= RIGHT SECTION (CARD) ================= */
+        .right-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 400px; /* Slightly wider for registration fields */
+            padding: 40px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .login-card h2 {
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        label {
+            font-size: 13px;
+            margin-bottom: 6px;
+            display: block;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .custom-input {
+            width: 100% !important;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            margin-bottom: 15px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Grouping fields like First/Last name to save space */
+        .input-row {
+            display: flex;
+            gap: 10px;
+        }
+        .input-row div {
+            flex: 1;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: white;
+            color: #1e3a8a;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #f8fafc;
+        }
+
+        .register {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #e5e7eb;
+        }
+
+        .register a {
+            color: #ffffff;
+            margin-left: 5px;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .container { flex-direction: column; height: auto; }
+            .left-section { padding: 40px; text-align: center; }
+            .title-main { font-size: 32px; }
+            .login-card { width: 90%; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <apex:image value="{!URLFOR($Resource.InvoiceLogo)}"/>
+    </div>
+    <div class="header-right">
+        <a href="https://orgfarm-4e9caeff63-dev-ed.develop.my.site.com/gmsa/s/">Home</a>
+        <a href="/gmsa/s/#programs">Grant Programs</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="left-section">
+        <div class="title-small">Join Our Community</div>
+        <div class="title-main">Create your account to<br/>start applying</div>
+        <ul class="features">
+            <li>• Access all Grant Programs</li>
+            <li>• Track your Application status</li>
+            <li>• Real-time notifications</li>
+        </ul>
+    </div>
+
+    <div class="right-section">
+        <div class="login-card">
+            <h2>Create Account</h2>
+
+            <apex:form >
+                <apex:pageMessages />
+
+                <div class="input-row">
+                    <div>
+                        <label>First Name</label>
+                        <apex:inputText value="{!firstName}" html-placeholder="eg: Rahul" styleClass="custom-input"/>
+                    </div>
+                    <div>
+                        <label>Last Name</label>
+                        <apex:inputText value="{!lastName}" html-placeholder="eg: Sharma" styleClass="custom-input"/>
+                    </div>
+                </div>
+
+                <label>Email</label>
+                <apex:inputText value="{!email}" html-placeholder="eg: rahulsharma@gmail.com" styleClass="custom-input"/>
+
+                <label>New Password</label>
+                <apex:inputSecret value="{!password}" html-placeholder="Enter Password" styleClass="custom-input"/>
+
+                <label>Confirm Password</label>
+                <apex:inputSecret value="{!confirmPassword}" html-placeholder="Confirm Password" styleClass="custom-input"/>
+
+                <apex:commandButton action="{!register}" value="Create Account" styleClass="login-btn"/>
+
+                <div class="register">
+                    Already have an account? 
+                    <apex:commandLink action="{!forwardToLogin}" value="Login" immediate="true"/>
+                </div>
+            </apex:form>
+        </div>
+    </div>
+</div>
+
+</body>
+</apex:page>

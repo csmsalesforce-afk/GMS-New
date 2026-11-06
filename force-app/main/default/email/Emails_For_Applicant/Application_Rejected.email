@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+  <body style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #333333;">
+
+
+<p>
+  Dear <strong>{!Grant_Applicant__c.Applicant_Name__c}</strong>,
+</p>
+
+<p>
+  Thank you for submitting your grant application 
+  <strong>{!Grant_Applicant__c.Name}</strong>.
+</p>
+
+<p>
+  After careful review, we regret to inform you that your application has 
+  <strong>not been approved</strong> at this time.
+</p>
+
+<p>
+  We encourage you to apply again in future funding cycles.
+</p>
+
+<p>
+  Regards,<br/>
+  <strong>Grant Management Team</strong><br/>
+  {!Grant_Applicant__c.00Nfj00002stRCM}
+</p>
+
+
+  </body>
+</html>

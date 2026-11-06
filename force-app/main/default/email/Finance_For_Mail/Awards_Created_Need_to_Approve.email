@@ -1,0 +1,70 @@
+Dear Financer,
+
+
+
+This is to inform you that a Grant Award has been created for the application assigned to you for Financial Review.
+
+
+
+You are requested to review the application and take the necessary approval action within the defined SLA.
+
+
+
+Application Details
+
+
+
+Applicant Name: {!Grant_Applicant__c.Applicant_Name__c}
+
+
+
+Project Title: {!Grant_Applicant__c.Project_Title__c}
+
+
+Requested Amount: {!Grant_Applicant__c.Requested_Amount__c}
+
+
+
+Grant Program: {!Grant_Applicant__c.Grant_Program__c}
+
+
+
+Submission Date: {!Grant_Applicant__c.Submission_Date__c}
+
+
+
+Approval Instructions
+
+
+
+If the approved grant amount is the same as the requested amount,
+
+please click the link below and proceed with approval.
+
+
+
+If the approved grant amount should be less than the requested amount,
+
+please log in to the Grant Management Portal, update the Grant Amount, and then proceed with approval.
+
+
+
+⚠️ Important Reminder
+
+If no action is taken within 7 days, the application will be automatically rejected as per SLA rules.
+
+
+
+Approval Link
+
+
+
+Click the link below to access the approval screen:
+
+https://orgfarm-4e9caeff63-dev-ed.develop.my.salesforce.com/p/process/ProcessInstanceWorkitemWizardStageManager?id={!urlid}
+
+
+
+Best regards,
+
+Grant Management Team

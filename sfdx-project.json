@@ -1,0 +1,28 @@
+{
+  "packageDirectories": [
+    {
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "path": "force-app",
+      "default": true,
+      "package": "Grant360",
+      "versionDescription": "Grant Management System 360",
+      "excludedMetadata": [
+        "Profile"
+      ]
+    }
+  ],
+  "name": "GMS",
+  "namespace": "gms360",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "66.0",
+  "packageAliases": {
+    "GMS_2GP_Unlocked_2026": "0Hofj000000561ZCAQ",
+    "Grant360": "0Hof60000000VbhCAE",
+    "Grant360@0.1.0-1": "04tf6000000WPphAAG",
+    "Grant360@0.1.0-2": "04tf6000000WPuXAAW",
+    "Grant360@0.1.0-3": "04tf6000000WPxlAAG",
+    "Grant360@0.1.0-4": "04tf6000000WaA1AAK",
+    "Grant360@0.1.0-5": "04tf6000000WinXAAS"
+  }
+}

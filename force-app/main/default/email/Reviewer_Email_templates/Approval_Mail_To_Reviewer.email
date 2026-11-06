@@ -1,0 +1,19 @@
+Dear {!Grant_Applicant__c.Reviewer_Assigned__c},
+           
+           Here is an Approval Request for {!Grant_Applicant__c.00Nfj00002stRCM} applied by {!Grant_Applicant__c.Applicant_Name__c}.Below is the application details:
+       
+            Application Number- {!Grant_Applicant__c.Name}
+            Applicant Name- {!Grant_Applicant__c.Applicant_Name__c}
+            Project Title- {!Grant_Applicant__c.Project_Title__c}
+            Project Description - {!Grant_Applicant__c.Project_Description__c}
+            Requested Amount - {!Grant_Applicant__c.Requested_Amount__c}
+            Submission Date- {!Grant_Applicant__c.Submission_Date__c}
+            Country - {!Grant_Applicant__c.Country__c}
+             Region -  {!Grant_Applicant__c.Region__c}
+             Final Recommendation - {!Grant_Applicant__c.00Nfj00002suex7} 
+             Budget Details - {!Grant_Applicant__c.Budget_Details__c}
+
+Please share your approval decission within 7 days.
+
+Best Regards,
+Grant Management System

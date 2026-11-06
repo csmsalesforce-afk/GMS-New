@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stripe_Payment_ID__c</fullName>
+    <description>The unique payment or transfer identifier returned by the Stripe API upon successful payment initiation, used for reconciliation and support.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Populated automatically when a Stripe payment is initiated (e.g., &quot;pi_3NxxxxxxxxxxxxxxxxxxxXX&quot;). Use this ID to look up the transaction in the Stripe Dashboard.</inlineHelpText>
+    <label>Stripe Payment ID</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

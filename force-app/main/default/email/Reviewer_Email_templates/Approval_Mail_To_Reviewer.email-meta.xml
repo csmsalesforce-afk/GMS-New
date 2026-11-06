@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Approval Mail To Reviewer</name>
+    <style>none</style>
+    <subject>Approval request for {!Grant_Applicant__c.00Nfj00002stRCM}</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

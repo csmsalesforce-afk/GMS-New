@@ -1,0 +1,18 @@
+<apex:page renderAs="pdf" showHeader="false" sidebar="false">
+    <html>
+        <body>
+<table width="100%">
+    <tr>
+        <td align="left">
+            <img src="{!$Resource.InvoiceLogo}" width="120"/>
+        </td>
+        <td align="right">
+            <h3>Invoice</h3>
+        </td>
+    </tr>
+</table>
+
+
+        </body>
+    </html>
+</apex:page>

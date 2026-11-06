@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Submission Email To The Applicant</name>
+    <style>none</style>
+    <subject>Application Submitted for {!Grant_Applicant__c.00Nfj00002stRCM} by {!Grant_Applicant__c.Applicant_Name__c}</subject>
+    <textOnly>Dear  {!Grant_Applicant__c.Applicant_Name__c} , 
+
+               Your Application For {!Grant_Applicant__c.00Nfj00002stRCM} is successfully submitted by {!Grant_Applicant__c.Applicant_Name__c}.
+We have forwarded it for the further approval.   
+
+
+Best Regards, 
+Grant Management System</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

@@ -1,0 +1,28 @@
+Hi Salesforce Admin,
+
+I hope you are doing well.
+
+An applicant profile has been submitted in the system and requires your review for eligibility before the profile can be approved and activated.
+
+Applicant Details:
+
+* Applicant Name: {!Grant_Program__c.Primary_Contact_Name__c}
+* Organization Type: {!Grant_Program__c.Organization_Type__c}
+* Email ID: {!Grant_Program__c.Primary_Contact_Email__c}
+* Submitted On: {!Grant_Program__c.CreatedDate}
+
+As part of the process, kindly review the applicant’s profile details and verify whether they meet the required eligibility and compliance criteria.
+
+Please update the following fields during your review:
+
+* Profile Status
+* isApplicable checkbox
+
+Once approved, the applicant profile will be finalized and enabled to proceed with further activities in the system.
+
+If any clarification or correction is required, please let us know.
+
+Thank you for your time and support.
+
+Best regards,
+Grant Management System

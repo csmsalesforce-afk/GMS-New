@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Donor Approval</name>
+    <style>none</style>
+    <subject>Donor Agreement - {!Donor_Agreement__c.Name} for Your Review</subject>
+    <textOnly>Dear {!Donor_Agreement__c.Donor__r.Name},
+
+We hope you are doing well.
+
+Thank you for your interest in supporting our program. Please review your donor agreement details below:
+
+--------------------------------------------------
+
+Agreement Details:
+
+Agreement Name: {!Donor_Agreement__c.Agreement_Name__c}
+Program: {!Donor_Agreement__c.Program__c}
+Total Amount: {!Donor_Agreement__c.Total_Amount__c}
+Start Date: {!Donor_Agreement__c.Start_Date__c}
+End Date: {!Donor_Agreement__c.End_Date__c}
+Funding Purpose: {!Donor_Agreement__c.Funding_Purpose__c}
+
+--------------------------------------------------
+
+Please review the agreement and choose one of the options below:
+
+Accept Agreement:
+https://orgfarm-4e9caeff63-dev-ed.develop.lightning.force.com/flow/Donor_Response_Flow?recordId={!Donor_Agreement__c.Id}&amp;response=Accepted
+
+Reject Agreement:
+https://orgfarm-4e9caeff63-dev-ed.develop.lightning.force.com/flow/Donor_Response_Flow?recordId={!Donor_Agreement__c.Id}&amp;response=Rejected
+
+--------------------------------------------------
+
+If you have any questions, please feel free to contact us.
+
+Thank you for your support.
+
+Best regards,
+CSM Technologies</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

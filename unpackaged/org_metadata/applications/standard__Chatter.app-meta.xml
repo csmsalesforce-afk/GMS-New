@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-UserProfile</tabs>
+    <tabs>standard-OtherUserProfile</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>Grant_Applicant__c</tabs>
+    <tabs>Award__c</tabs>
+    <tabs>Country__c</tabs>
+    <tabs>Region__c</tabs>
+    <tabs>InvoiceForAward__c</tabs>
+    <tabs>Grant_Program__c</tabs>
+    <tabs>Program__c</tabs>
+    <tabs>Grant_Document__c</tabs>
+    <tabs>Donor__c</tabs>
+    <tabs>Donor_Agreement__c</tabs>
+    <tabs>Disbursement__c</tabs>
+    <tabs>Installment__c</tabs>
+    <tabs>Funding_Request__c</tabs>
+    <tabs>Funding_Allocation__c</tabs>
+    <tabs>Agreement_Line_Item__c</tabs>
+    <tabs>Fund_Utilization__c</tabs>
+    <tabs>Donor_Campaign__c</tabs>
+    <tabs>Donations__c</tabs>
+    <tabs>Project_Budget__c</tabs>
+</CustomApplication>

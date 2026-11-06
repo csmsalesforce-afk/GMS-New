@@ -1,0 +1,289 @@
+<template>
+    <div class="campaigns-wrapper">
+        <!-- Hero Header -->
+        <header class="hero-banner">
+            <div class="hero-content">
+                <span class="sub-badge">VERIFIED PHILANTHROPIC INITIATIVES</span>
+                <h1 class="hero-title">Donor Campaigns</h1>
+                <p class="hero-subtitle">
+                    Support verified, high-impact programs and initiatives. Choose a campaign below to review milestones and submit your contribution directly.
+                </p>
+
+                <!-- Search & Filters -->
+                <div class="search-bar-row">
+                    <div class="search-input-box">
+                        <span class="search-icon">🔍</span>
+                        <input
+                            type="text"
+                            placeholder="Search campaigns by name or focus area..."
+                            value={searchKey}
+                            oninput={handleSearchChange}
+                            class="search-input"
+                        />
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-container">
+            <!-- Loading Indicator -->
+            <template lwc:if={isLoading}>
+                <div class="loading-box">
+                    <lightning-spinner alternative-text="Loading active campaigns..." size="medium"></lightning-spinner>
+                    <p>Loading campaigns...</p>
+                </div>
+            </template>
+
+            <!-- Campaign Cards Grid -->
+            <template lwc:if={hasCampaigns}>
+                <div class="campaigns-grid">
+                    <template for:each={filteredCampaigns} for:item="camp">
+                        <div key={camp.Id} class="campaign-card">
+                            <div class="card-header">
+                                <span class="category-pill">{camp.Type__c}</span>
+                                <span class="status-tag">Active</span>
+                            </div>
+
+                            <h3 class="camp-name">{camp.Name}</h3>
+                            <template lwc:if={camp.Program__r}>
+                                <div class="program-link">
+                                    <span class="program-icon">🏛️</span> {camp.Program__r.Name}
+                                </div>
+                            </template>
+
+                            <p class="camp-desc">{camp.Description__c}</p>
+
+                            <!-- Funding Goal Block -->
+                            <div class="funding-meta">
+                                <div class="goal-row">
+                                    <span class="meta-label">Campaign Goal:</span>
+                                    <span class="meta-val">{camp.formattedGoal}</span>
+                                </div>
+                                <template lwc:if={camp.Start_Date__c}>
+                                    <div class="date-row">
+                                        <span class="meta-label">Timeline:</span>
+                                        <span class="date-val">{camp.Start_Date__c} &mdash; {camp.End_Date__c}</span>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <!-- Card Footer -->
+                            <div class="card-footer">
+                                <button
+                                    class="donate-btn"
+                                    data-id={camp.Id}
+                                    data-name={camp.Name}
+                                    onclick={openDonateModal}
+                                >
+                                    Donate Now &rarr;
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- No Campaigns Empty State -->
+            <template lwc:if={noCampaignsFound}>
+                <div class="empty-state-card">
+                    <div class="empty-icon">🤝</div>
+                    <h2>No Campaigns Available</h2>
+                    <p>There are currently no active donor campaigns matching your criteria. Please check back shortly or explore another search term.</p>
+                </div>
+            </template>
+        </main>
+
+        <!-- DONATION MODAL (Matching Image 1 Preset Giving Design) -->
+        <template lwc:if={isDonateModalOpen}>
+            <div class="modal-backdrop">
+                <div class="modal-card">
+                    <button class="modal-close-btn" onclick={closeDonateModal}>&times;</button>
+
+                    <div class="modal-header">
+                        <span class="modal-badge">DIRECT GIVING</span>
+                        <h2>Donate Today</h2>
+                        <p class="selected-campaign-name">Supporting: <strong>{selectedCampaignName}</strong></p>
+                    </div>
+
+                    <form onsubmit={handleDonationSubmit} class="donate-form">
+                        <!-- Preset Giving Options Grid (Matching Image 1) -->
+                        <div class="presets-label">Select Contribution Amount</div>
+                        <div class="presets-grid">
+                            <template for:each={presetAmounts} for:item="preset">
+                                <label
+                                    key={preset.value}
+                                    class={preset.cardClass}
+                                    onclick={selectPreset}
+                                    data-val={preset.value}
+                                >
+                                    <input
+                                        type="radio"
+                                        name="presetGroup"
+                                        checked={preset.selected}
+                                        value={preset.value}
+                                        class="preset-radio"
+                                    />
+                                    <div class="preset-info">
+                                        <span class="preset-amount">${preset.value}</span>
+                                        <span class="preset-desc">{preset.label}</span>
+                                    </div>
+                                </label>
+                            </template>
+                        </div>
+
+                        <!-- Custom Amount -->
+                        <div class="custom-amount-row">
+                            <label class="input-label">Or Custom Amount ($ USD)</label>
+                            <input
+                                type="number"
+                                min="1"
+                                step="1"
+                                value={customAmount}
+                                oninput={handleCustomAmountChange}
+                                placeholder="Enter other amount (e.g. 250)"
+                                class="form-input"
+                            />
+                        </div>
+
+                        <!-- Designation & Dedication (Matching Image 1) -->
+                        <div class="options-group">
+                            <label class="checkbox-row">
+                                <input
+                                    type="checkbox"
+                                    checked={isGeneralFund}
+                                    onchange={handleGeneralFundChange}
+                                />
+                                <span>I am donating to provide food, critical supplies, and medical relief.</span>
+                            </label>
+
+                            <label class="checkbox-row">
+                                <input
+                                    type="checkbox"
+                                    checked={isDedication}
+                                    onchange={handleDedicationToggle}
+                                />
+                                <span>Dedicate my donation in honor or memory of someone.</span>
+                            </label>
+
+                            <template lwc:if={isDedication}>
+                                <input
+                                    type="text"
+                                    placeholder="Enter dedication name or personal tribute..."
+                                    value={dedicationNote}
+                                    oninput={handleDedicationNoteChange}
+                                    class="form-input mt-2"
+                                />
+                            </template>
+                        </div>
+
+                        <!-- Donor Contact Fields -->
+                        <div class="donor-details-grid">
+                            <div class="form-group">
+                                <label class="input-label">Your Name *</label>
+                                <input
+                                    type="text"
+                                    value={donorName}
+                                    oninput={handleNameChange}
+                                    placeholder="Full Name"
+                                    required
+                                    class="form-input"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label class="input-label">Email Address *</label>
+                                <input
+                                    type="email"
+                                    value={donorEmail}
+                                    oninput={handleEmailChange}
+                                    placeholder="Email Address"
+                                    required
+                                    class="form-input"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="input-label">Phone Number (Optional)</label>
+                            <input
+                                type="tel"
+                                value={donorPhone}
+                                oninput={handlePhoneChange}
+                                placeholder="Phone Number"
+                                class="form-input"
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="input-label">Message / Note to Administrators</label>
+                            <textarea
+                                rows="2"
+                                value={donorMessage}
+                                oninput={handleMessageChange}
+                                placeholder="Add an optional message..."
+                                class="form-input"
+                            ></textarea>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="modal-actions">
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                class="btn-confirm-donate"
+                            >
+                                <template lwc:if={isSubmitting}>
+                                    Processing Donation...
+                                </template>
+                                <template lwc:else>
+                                    Donate Now (${selectedAmount})
+                                </template>
+                            </button>
+                            <button
+                                type="button"
+                                class="btn-cancel"
+                                onclick={closeDonateModal}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </template>
+
+        <!-- SUCCESS CONFIRMATION MODAL -->
+        <template lwc:if={donationSuccess}>
+            <div class="modal-backdrop">
+                <div class="modal-card success-card">
+                    <div class="success-badge">✓</div>
+                    <h2>Thank You for Your Generous Donation!</h2>
+                    <p class="success-msg">
+                        Your contribution has been received and added directly to <strong>{donationSuccess.campaignName}</strong>.
+                    </p>
+
+                    <div class="receipt-box">
+                        <div class="receipt-row">
+                            <span class="r-label">Receipt Number:</span>
+                            <span class="r-val">{donationSuccess.receiptNumber}</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span class="r-label">Amount:</span>
+                            <span class="r-val-amount">${donationSuccess.amount} USD</span>
+                        </div>
+                        <div class="receipt-row">
+                            <span class="r-label">Status:</span>
+                            <span class="r-status">Successful</span>
+                        </div>
+                    </div>
+
+                    <div class="success-actions">
+                        <button class="btn-confirm-donate" onclick={closeSuccessModal}>
+                            Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

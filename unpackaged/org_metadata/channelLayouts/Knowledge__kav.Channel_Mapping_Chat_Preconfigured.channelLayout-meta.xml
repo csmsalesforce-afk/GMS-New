@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ChannelLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesExcludeFieldLabels>true</doesExcludeFieldLabels>
+    <doesExcludeFiles>true</doesExcludeFiles>
+    <enabledChannels>Chat</enabledChannels>
+    <label>Chat (Preconfigured)</label>
+    <layoutItems>
+        <field>DigitalEngagementResponse__c</field>
+    </layoutItems>
+    <recordType>--Master--</recordType>
+</ChannelLayout>

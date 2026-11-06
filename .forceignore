@@ -1,0 +1,17 @@
+package.xml
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
+
+node_modules/
+
+# ─── UNPACKAGED DIRECTORY ────────────────────────────────────────────────────
+unpackaged/**
+
+# ─── EMAIL TEMPLATES (unfiled$public cannot be packaged in 2GP) ────────────────
+**/email/unfiled$public/**
+**/email/unfiled$public-meta.xml

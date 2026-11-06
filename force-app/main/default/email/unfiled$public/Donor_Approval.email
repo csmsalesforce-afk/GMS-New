@@ -1,0 +1,45 @@
+<p>Dear {!Donor_Agreement__c.Donor__r.Name},</p>
+
+<p>We hope you are doing well.</p>
+
+<p>Thank you for your interest in supporting our program. Please review the details of your donor agreement below:</p>
+
+<hr/>
+
+<p><strong>Agreement Details:</strong></p>
+
+<ul>
+  <li><strong>Agreement Name:</strong> {!Donor_Agreement__c.Agreement_Name__c}</li>
+  <li><strong>Program:</strong> {!Donor_Agreement__c.Program__c}</li>
+  <li><strong>Total Amount:</strong> {!Donor_Agreement__c.Agreement_Amount__c}</li>
+  <li><strong>Start Date:</strong> {!Donor_Agreement__c.Start_Date__c}</li>
+  <li><strong>End Date:</strong> {!Donor_Agreement__c.End_Date__c}</li>
+  <li><strong>Funding Purpose:</strong> {!Donor_Agreement__c.Funding_Purpose__c}</li>
+</ul>
+
+<hr/>
+
+<p>Please review the agreement and choose one of the options below:</p>
+
+<p>
+<a href="https://orgfarm-4e9caeff63-dev-ed.develop.lightning.force.com/flow/Donor_Response_Flow?recordId={!Donor_Agreement__c.Id}&response=Accepted" 
+style="background-color:#28a745;color:white;padding:10px 20px;text-decoration:none;border-radius:5px;">
+✔ Accept Agreement
+</a>
+</p>
+
+<p>
+<a href="https://orgfarm-4e9caeff63-dev-ed.develop.lightning.force.com/flow/Donor_Response_Flow?recordId={!Donor_Agreement__c.Id}&response=Rejected" 
+style="background-color:#dc3545;color:white;padding:10px 20px;text-decoration:none;border-radius:5px;">
+✖ Reject Agreement
+</a>
+</p>
+
+<hr/>
+
+<p>If you have any questions or need clarification, please feel free to contact us.</p>
+
+<p>Thank you for your support.</p>
+
+<p>Best regards,<br/>
+CSM Technologies</p>

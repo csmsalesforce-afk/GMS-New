@@ -1,0 +1,32 @@
+<apex:page controller="CustomLoginController" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
+    <head>
+        <style>
+            /* Same CSS as Login Page */
+            body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f3f5f7; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+            .card { background: white; width: 360px; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
+            h2 { color: #1a202c; font-size: 24px; margin-bottom: 25px; }
+            .input-group { margin-bottom: 15px; text-align: left; }
+            label { display: block; font-size: 13px; color: #718096; margin-bottom: 5px; }
+            input { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box; }
+            .btn-primary { width: 100%; background: #dd6b20; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+            .btn-primary:hover { background: #c05621; }
+            .back-link { display: block; margin-top: 20px; font-size: 13px; color: #718096; text-decoration: none; cursor:pointer;}
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h2>Reset Password</h2>
+            <p style="color:#718096; font-size:14px; margin-bottom:20px;">Enter your username to receive a reset link.</p>
+            <apex:form >
+                <apex:pageMessages />
+                <div class="input-group">
+                    <label>Username</label>
+                    <apex:inputText value="{!username}" html-placeholder="name@company.com" />
+                </div>
+                
+                <apex:commandButton action="{!forgotPassword}" value="Send Email" styleClass="btn-primary"/>
+                <apex:commandLink action="{!forwardToLogin}" value="← Back to Login" styleClass="back-link" immediate="true"/>
+            </apex:form>
+        </div>
+    </body>
+</apex:page>

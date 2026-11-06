@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Application Rejected</name>
+    <style>none</style>
+    <subject>Update on Your Grant Application</subject>
+    <textOnly>Dear {!Grant_Applicant__c.Applicant_Name__c},
+
+Thank you for submitting your grant application {!Grant_Applicant__c.Name}.
+
+After careful review, we regret to inform you that your application has not been approved at this time.
+
+We encourage you to apply again in future funding cycles.
+
+Regards,
+Grant Management Team
+{!Grant_Applicant__c.00Nfj00002stRCM}</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

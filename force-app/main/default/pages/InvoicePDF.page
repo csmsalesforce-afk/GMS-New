@@ -1,0 +1,386 @@
+<apex:page standardController="InvoiceForAward__c"
+           extensions="InvoicePDFController"
+           renderAs="pdf"
+           showHeader="false"
+           sidebar="false"
+           applyHtmlTag="false"
+           applyBodyTag="false">
+
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .header-table td {
+            border: 1px solid #c7c7c7;
+            padding: 12px;
+            vertical-align: middle;
+        }
+
+        .invoice-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c6fbb;
+        }
+
+        .logo {
+            width: 150px;
+        }
+
+        .section-title {
+            background-color: #2c6fbb;
+            color: #fff;
+            font-weight: bold;
+            padding: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        td {
+            border: 1px solid #c7c7c7;
+            padding: 6px;
+        }
+
+        .label {
+            font-weight: bold;
+            width: 35%;
+            background-color: #f4f6f9;
+        }
+
+        .value {
+            width: 65%;
+        }
+
+        .amount {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .total-label {
+            font-weight: bold;
+            background-color: #f4f6f9;
+        }
+
+        .total-value {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
+
+<table class="header-table">
+    <tr>
+        <td style="width:70%;">
+            <div class="invoice-title">
+                INVOICE
+            </div>
+        </td>
+
+        <td style="width:30%; text-align:right;">
+            <img
+                src="{!URLFOR($Resource.InvoiceLogo)}"
+                class="logo"
+            />
+        </td>
+    </tr>
+</table>
+
+
+<!-- ===================================================== -->
+<!-- INVOICE DETAILS -->
+<!-- ===================================================== -->
+
+<table>
+    <tr>
+        <td colspan="2" class="section-title">
+            Invoice Details
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Invoice Number
+        </td>
+
+        <td class="value">
+            {!invoice.Name}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Invoice Date
+        </td>
+
+        <td class="value">
+            <apex:outputText value="{0,date,MM/dd/yyyy}">
+                <apex:param value="{!invoice.Invoice_Date__c}"/>
+            </apex:outputText>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Invoice Status
+        </td>
+
+        <td class="value">
+            {!invoice.Invoice_Status__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Payment Date
+        </td>
+
+        <td class="value">
+            <apex:outputText value="{0,date,MM/dd/yyyy}">
+                <apex:param value="{!invoice.Payment_Date__c}"/>
+            </apex:outputText>
+        </td>
+    </tr>
+</table>
+
+
+<!-- ===================================================== -->
+<!-- DISBURSEMENT DETAILS -->
+<!-- ===================================================== -->
+
+<table>
+    <tr>
+        <td colspan="2" class="section-title">
+            Disbursement Details
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Disbursement ID
+        </td>
+
+        <td class="value">
+            {!disbursement.Name}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Installment
+        </td>
+
+        <td class="value">
+            {!disbursement.Installment__r.Name}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Disbursement Date
+        </td>
+
+        <td class="value">
+            <apex:outputText value="{0,date,MM/dd/yyyy}">
+                <apex:param value="{!disbursement.Disbursement_Date__c}"/>
+            </apex:outputText>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Disbursement Status
+        </td>
+
+        <td class="value">
+            {!disbursement.Status__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Amount Disbursed
+        </td>
+
+        <td class="value amount">
+            $ {!disbursement.Total_Amount__c}
+        </td>
+    </tr>
+</table>
+
+
+<!-- ===================================================== -->
+<!-- PAYMENT DETAILS -->
+<!-- ===================================================== -->
+
+<table>
+    <tr>
+        <td colspan="2" class="section-title">
+            Payment Details
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Payment Status
+        </td>
+
+        <td class="value">
+            {!disbursement.Payment_Status__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Payment Type
+        </td>
+
+        <td class="value">
+            {!disbursement.Payment_Type__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Payment Initiated Date
+        </td>
+
+        <td class="value">
+            <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}">
+                <apex:param value="{!disbursement.Payment_Initiated_Date__c}"/>
+            </apex:outputText>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Payment Date
+        </td>
+
+        <td class="value">
+            <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}">
+                <apex:param value="{!disbursement.Payment_Date__c}"/>
+            </apex:outputText>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Stripe Payment ID
+        </td>
+
+        <td class="value">
+            {!disbursement.Stripe_Payment_ID__c}
+        </td>
+    </tr>
+
+    <apex:outputPanel rendered="{!NOT(ISBLANK(disbursement.Payment_Error__c))}">
+
+        <tr>
+            <td class="label">
+                Payment Error
+            </td>
+
+            <td class="value">
+                {!disbursement.Payment_Error__c}
+            </td>
+        </tr>
+
+    </apex:outputPanel>
+
+</table>
+
+
+<!-- ===================================================== -->
+<!-- FINANCIAL DETAILS -->
+<!-- ===================================================== -->
+
+<table>
+    <tr>
+        <td colspan="2" class="section-title">
+            Financial Details
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Requested Amount
+        </td>
+
+        <td class="value">
+            {!invoice.Requested_Amount__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Finance Approved Amount
+        </td>
+
+        <td class="value">
+            {!invoice.Finance_Approved_Amount__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Invoice Amount
+        </td>
+
+        <td class="value">
+            {!invoice.Invoice_Amount__c}
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label">
+            Budget Amendment
+        </td>
+
+        <td class="value">
+            {!invoice.Budget_Amendment__c}
+        </td>
+    </tr>
+</table>
+
+
+<!-- ===================================================== -->
+<!-- TOTAL DISBURSED -->
+<!-- ===================================================== -->
+
+<table>
+    <tr>
+        <td class="total-label">
+            TOTAL AMOUNT DISBURSED
+        </td>
+
+        <td class="total-value">
+            $ {!disbursement.Total_Amount__c} USD
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
+
+</apex:page>

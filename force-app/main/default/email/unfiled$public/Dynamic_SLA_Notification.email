@@ -1,0 +1,20 @@
+Dear Approver,
+
+{!Grant_Applicant__c.System_Notification_Message__c}
+
+Application Details 
+
+Application Name : {!Grant_Applicant__c.Name}
+
+Current Status : {!Grant_Applicant__c.Application_Status__c}
+
+Submission Date : {!Grant_Applicant__c.Submission_Date__c}
+
+Action Required 
+
+Please click the link Below to review and approve or reject : 
+
+{!Grant_Applicant__c.Link}
+
+Thank You 
+GRANT MANAGEMENT SYSTEM

@@ -1,0 +1,468 @@
+<apex:page controller="CustomLoginController"
+           showHeader="false"
+           sidebar="false"
+           standardStylesheets="false"
+           docType="html-5.0">
+
+<head>
+    <style>
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f5f7fb;
+        }
+
+        /* ================= HEADER ================= */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: transparent;
+        }
+
+        .header-left img {
+            width: 133px;
+            margin-left: 45px;
+        }
+
+        .header-right a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header-right a:hover {
+            color: #1e3a8a;
+        }
+
+        /* ================= CONTAINER ================= */
+        .container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+
+        /* ================= LEFT ================= */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 120px;
+            padding-right: 40px;
+        }
+
+        .title-small {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 10px;
+        }
+
+        .title-main {
+            font-size: 48px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .features {
+            list-style: none;
+            padding: 0;
+            color: #4b5563;
+            font-size: 16px;
+        }
+
+        .features li {
+            margin-bottom: 12px;
+        }
+
+        /* ================= RIGHT ================= */
+        .right-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 380px;
+            padding: 45px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .login-card h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        label {
+            font-size: 13px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .custom-input {
+            width: 100% !important;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            margin-bottom: 18px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .forgot {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .forgot a {
+            color: #e0e7ff;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: white;
+            color: #1e3a8a;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ================= GOOGLE LOGIN ================= */
+
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 22px 0;
+            color: rgba(255,255,255,0.75);
+            font-size: 12px;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.35);
+        }
+
+        .google-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: white;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .google-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .google-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ================= REGISTER ================= */
+
+        .register {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: #e5e7eb;
+        }
+
+        .register a {
+            color: #ffffff;
+            margin-left: 5px;
+            text-decoration: underline;
+        }
+        
+        
+          /* ================= SOCIAL LOGIN ================= */
+
+        .social-login-title {
+            text-align: center;
+            margin: 22px 0 14px;
+            color: rgba(255,255,255,0.85);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .social-login-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .social-icon-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+
+        .social-icon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+            background: #f8fafc;
+        }
+
+        .social-icon {
+            width: 25px;
+            height: 25px;
+        }
+
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section {
+                padding: 40px;
+                text-align: center;
+            }
+
+            .title-main {
+                font-size: 32px;
+            }
+
+            .right-section {
+                padding-bottom: 40px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="header-left">
+        <apex:image value="{!URLFOR($Resource.InvoiceLogo)}"/>
+    </div>
+
+    <div class="header-right">
+        <a href="https://orgfarm-4e9caeff63-dev-ed.develop.my.site.com/gmsaura/s/">
+            Home
+        </a>
+
+        <a href="/gmsaura/s/#programs">
+            Grant Programs
+        </a>
+    </div>
+
+
+
+
+
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+    <!-- LEFT -->
+    <div class="left-section">
+
+        <div class="title-small">
+            Access, Apply &amp; Manage
+        </div>
+
+        <div class="title-main">
+            Funding opportunities
+        </div>
+
+        <ul class="features">
+            <li>• Verified Grant Programs</li>
+            <li>• Personalized Grant matches</li>
+            <li>• Transparent review system</li>
+        </ul>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-section">
+
+        <div class="login-card">
+
+            <h2>Login</h2>
+
+            <apex:form >
+
+                <apex:pageMessages />
+
+                <!-- EMAIL -->
+                <label>Email</label>
+
+                <apex:inputText value="{!username}"
+                    html-placeholder="eg: rahulsharma@gmail.com"
+                    styleClass="custom-input"/>
+
+                <!-- PASSWORD -->
+                <label>Password</label>
+
+                <apex:inputSecret value="{!password}"
+                    html-placeholder="Enter Password"
+                    styleClass="custom-input"/>
+
+                <!-- FORGOT PASSWORD -->
+                <div class="forgot">
+
+                    <apex:commandLink action="{!forwardToForgot}"
+                        value="Forgot Password?"
+                        immediate="true"/>
+
+                </div>
+
+                <!-- NORMAL LOGIN -->
+                <apex:commandButton action="{!login}"
+                    value="Login"
+                    styleClass="login-btn"/>
+
+                <!-- DIVIDER -->
+                <div class="or-divider">
+                    OR
+                </div>
+
+               <div class="social-login-icons">
+
+
+                    <!-- ================= GOOGLE ================= -->
+
+                    <a
+                        class="social-icon-btn"
+                        href="https://orgfarm-4e9caeff63-dev-ed.develop.my.site.com/gmsaura/services/auth/sso/GEMS_Google"
+                        title="Login with Google"
+                        aria-label="Login with Google">
+
+                        <svg
+                            class="social-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true">
+
+                            <path
+                                fill="#4285F4"
+                                d="M21.35 12.27c0-.79-.07-1.55-.22-2.27H12v4.3h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.42z"/>
+
+                            <path
+                                fill="#34A853"
+                                d="M12 21.96c2.63 0 4.84-.87 6.45-2.35l-3.14-2.45c-.87.58-1.98.93-3.31.93-2.54 0-4.69-1.72-5.46-4.03H3.3v2.53A9.74 9.74 0 0 0 12 21.96z"/>
+
+                            <path
+                                fill="#FBBC05"
+                                d="M6.54 14.06a5.85 5.85 0 0 1 0-3.72V7.81H3.3a9.99 9.99 0 0 0 0 8.78l3.24-2.53z"/>
+
+                            <path
+                                fill="#EA4335"
+                                d="M12 6.31c1.43 0 2.72.49 3.73 1.46l2.8-2.8C16.84 3.4 14.63 2.5 12 2.5a9.74 9.74 0 0 0-8.7 5.31l3.24 2.53C7.31 8.03 9.46 6.31 12 6.31z"/>
+
+                        </svg>
+
+                    </a>
+
+
+
+                    <!-- ================= SLACK ================= -->
+
+                    <a
+                        class="social-icon-btn"
+                        href="https://orgfarm-4e9caeff63-dev-ed.develop.my.site.com/gmsaura/services/auth/sso/GEMS_Slack"
+                        title="Login with Slack"
+                        aria-label="Login with Slack">
+
+                        <svg
+                            class="social-icon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true">
+
+                            <path
+                                fill="#36C5F0"
+                                d="M5.04 15.08a2.52 2.52 0 1 1-2.52 2.52 2.52 0 0 1 2.52-2.52h2.52v-2.52H5.04a2.52 2.52 0 0 1 0-5.04h2.52v2.52H5.04a2.52 2.52 0 0 0 0 5.04z"/>
+
+                            <path
+                                fill="#2EB67D"
+                                d="M8.96 5.04a2.52 2.52 0 1 1 2.52-2.52A2.52 2.52 0 0 1 8.96 5.04v2.52h2.52V5.04a2.52 2.52 0 1 1 5.04 0v2.52H14V5.04a2.52 2.52 0 0 0-5.04 0z"/>
+
+                            <path
+                                fill="#ECB22E"
+                                d="M18.96 8.96a2.52 2.52 0 1 1 2.52 2.52h-2.52V8.96zm-2.52 0v2.52h2.52a2.52 2.52 0 1 1 0 5.04h-2.52V14h2.52a2.52 2.52 0 0 0 0-5.04z"/>
+
+                            <path
+                                fill="#E01E5A"
+                                d="M15.08 18.96a2.52 2.52 0 1 1-2.52 2.52 2.52 2.52 0 0 1-2.52-2.52v-2.52h2.52v2.52a2.52 2.52 0 1 0 2.52-2.52h-2.52v-2.52h2.52a2.52 2.52 0 0 1 2.52 2.52 2.52 0 0 1-2.52 2.52z"/>
+
+                        </svg>
+
+                    </a>
+
+
+                </div>
+
+
+        
+                <!-- REGISTER -->
+                <div class="register">
+
+                    Don’t have an account?
+
+                    <apex:commandLink action="{!forwardToRegister}"
+                        value="Create Account"
+                        immediate="true"/>
+
+                </div>
+
+            </apex:form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</apex:page>

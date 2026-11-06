@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expense_Category__c</fullName>
+    <label>Expense Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Personnel &amp; Staffing</fullName>
+                <default>false</default>
+                <label>Personnel &amp; Staffing</label>
+            </value>
+            <value>
+                <fullName>Equipment &amp; Infrastructure</fullName>
+                <default>false</default>
+                <label>Equipment &amp; Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Materials &amp; Supplies</fullName>
+                <default>false</default>
+                <label>Materials &amp; Supplies</label>
+            </value>
+            <value>
+                <fullName>Travel &amp; Fieldwork</fullName>
+                <default>false</default>
+                <label>Travel &amp; Fieldwork</label>
+            </value>
+            <value>
+                <fullName>Training &amp; Workshops</fullName>
+                <default>false</default>
+                <label>Training &amp; Workshops</label>
+            </value>
+            <value>
+                <fullName>Consultancy &amp; Subcontracting</fullName>
+                <default>false</default>
+                <label>Consultancy &amp; Subcontracting</label>
+            </value>
+            <value>
+                <fullName>Administrative &amp; Overheads</fullName>
+                <default>false</default>
+                <label>Administrative &amp; Overheads</label>
+            </value>
+            <value>
+                <fullName>Other Direct Costs</fullName>
+                <default>false</default>
+                <label>Other Direct Costs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

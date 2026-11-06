@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Application Submitted Successfully</title>
+  </head>
+  <body style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #333333; line-height: 1.6;">
+
+    <p>
+      Dear <strong>{!Grant_Applicant__c.Applicant_Name__c}</strong>,
+    </p>
+
+    <p>
+      Your application for 
+      <strong>{!Grant_Applicant__c.00Nfj00002stRCM}</strong> 
+      has been successfully submitted by 
+      <strong>{!Grant_Applicant__c.Applicant_Name__c}</strong>.
+    </p>
+
+    <p>
+      We have forwarded your application for further approval.  
+      You will be notified once a decision is made.
+    </p>
+
+    <br/>
+
+    <p>
+      Best Regards,<br/>
+      <strong>Grant Management System</strong>
+    </p>
+
+  </body>
+</html>
